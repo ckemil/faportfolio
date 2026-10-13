@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Design-system components. One block per component in components/ui.
+   AptyRead design-system components (used only on the AptyRead case study). One block per component in components/ui.
    ========================================================================== */
 
 /* ---------- Section (rounded panel) ---------- */
@@ -19,6 +19,7 @@
 .ds-section--primary { --section-bg: var(--primary); --ring: rgba(255, 255, 255, 0.12); color: #fff; }
 .ds-section--navy { --section-bg: var(--navy); --ring: rgba(255, 255, 255, 0.07); color: #fff; }
 .ds-stack { display: flex; flex-direction: column; gap: var(--page-gutter); padding: var(--page-gutter); }
+.apty-scope *, .apty-scope *::before, .apty-scope *::after { box-sizing: border-box; }
 
 /* ---------- Rings (decorative ellipse strokes) ---------- */
 .ds-rings { position: absolute; inset: 0; pointer-events: none; z-index: 0; color: var(--ring); }

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Card, Pill, SpeechNote, WarningNote, LeadText } from "@/components/ui";
 import { Reveal, Stagger, StaggerItem, ease } from "@/components/motion";
-import type { Block } from "@/lib/case-studies";
+import type { Block } from "@/lib/aptyread";
 import CardVisual from "./Visuals";
 import { AptyIntro, AptyClosing } from "./AptyRead";
 

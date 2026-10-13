@@ -1,12 +1,12 @@
-import Hero from "@/components/home/Hero";
-import Projects from "@/components/home/Projects";
-import About from "@/components/home/About";
-import Stack from "@/components/home/Stack";
+import Hero from "@/components/Hero";
+import Projects from "@/components/Projects";
+import About from "@/components/About";
+import Stack from "@/components/Stack";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main id="top" className="ds-stack">
+    <main id="top">
       <Hero />
       <Projects />
       <About />

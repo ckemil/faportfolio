@@ -59,7 +59,7 @@ export default function TicTacToe({ onClose }: { onClose: () => void }) {
             </button>
           ))}
         </div>
-        <button className="ds-btn ds-btn--navy" onClick={() => setBoard(Array(9).fill(null))}>
+        <button className="btn btn-dark" onClick={() => setBoard(Array(9).fill(null))}>
           Play again
         </button>
       </div>

@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Lato, Noto_Kufi_Arabic } from "next/font/google";
-import { MotionProvider } from "@/components/motion";
-import Nav from "@/components/Nav";
+import { Inter, Fraunces, DM_Mono, Space_Grotesk, Lato } from "next/font/google";
+import "./globals.css";
 import "../styles/tokens.css";
 import "../styles/ds.css";
-import "./globals.css";
+import "../styles/aptyread.css";
 
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+});
+const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk" });
+// Only used inside the AptyRead case study (.apty-scope).
 const lato = Lato({ subsets: ["latin"], weight: ["400", "700", "900"], variable: "--font-lato" });
-const kufi = Noto_Kufi_Arabic({ subsets: ["arabic"], weight: ["700"], variable: "--font-kufi" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://uixfathima.com"),
@@ -25,13 +33,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${lato.variable} ${kufi.variable}`}>
-      <body>
-        <MotionProvider>
-          <Nav />
-          {children}
-        </MotionProvider>
-      </body>
+    <html
+      lang="en"
+      className={`${inter.variable} ${fraunces.variable} ${dmMono.variable} ${spaceGrotesk.variable} ${lato.variable}`}
+    >
+      <body>{children}</body>
     </html>
   );
 }

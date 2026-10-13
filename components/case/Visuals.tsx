@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ease } from "@/components/motion";
-import type { Visual } from "@/lib/case-studies";
+import type { Visual } from "@/lib/aptyread";
 
 /** Small illustrations inside Product Strategy / Design System cards (rebuilt from Figma). */
 export default function CardVisual({ kind }: { kind: Visual }) {

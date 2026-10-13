@@ -1,7 +1,7 @@
+// AptyRead case study — the only page using the Figma design system (components/ui, styles/aptyread/*).
 import type { SectionTone, CardTone, Lead, BadgeTone } from "@/components/ui";
 
-const img = (name: string) => `/images/${name}`;
-const apty = (name: string) => img(`apty/${name}`);
+const apty = (name: string) => `/images/apty/${name}`;
 
 export type FlowTone = "lime" | "blue" | "lavender" | "pink" | "yellow" | "navy";
 export type Visual = "now-next" | "bars" | "parent-toggle" | "states";
@@ -43,9 +43,7 @@ export type CaseSection = {
 
 const aptyAvatar = apty("apty-avatar.png");
 
-export const caseStudies: Record<string, CaseSection[]> = {
-  /* ================================================================== */
-  aptyread: [
+export const aptyreadSections: CaseSection[] = [
     { tone: "surface", blocks: [{ type: "apty-intro" }] },
 
     {
@@ -301,148 +299,4 @@ export const caseStudies: Record<string, CaseSection[]> = {
     },
 
     { tone: "blue", rings: true, blocks: [{ type: "apty-closing" }] },
-  ],
-
-  /* ================================================================== */
-  "enterprise-erp-sales-force-automation-platform": [
-    {
-      tone: "surface",
-      eyebrow: "Overview",
-      title: "Two products, one business.",
-      lead: {
-        muted: "This project connected two products into one business: a web-based ERP that runs internal operations, and a mobile Sales Force Automation (SFA) app that puts the same operational intelligence into the hands of field sales reps.",
-        text: "Instead of designing them as separate tools, I approached them as one ecosystem — a rep's order placed at a customer's door should be visible to a warehouse manager and a finance controller within seconds, not by end of day.",
-      },
-      blocks: [
-        { type: "p", text: "My role spanned the full process: stakeholder research, information architecture, user flows, wireframes, high-fidelity UI, a shared design system across web and mobile, prototyping, and developer handoff." },
-      ],
-    },
-    {
-      tone: "blue",
-      rings: true,
-      eyebrow: "Core problem",
-      title: "A patchwork of disconnected systems.",
-      lead: {
-        muted: "The organization was running on multiple disconnected third-party systems layered on top of manual processes — separate tools for sales, inventory, accounting, and customer management that didn't talk to each other.",
-        text: "Field sales reps recorded orders by hand, then re-entered them later, which meant delays, duplicate data entry, inventory mismatches, and management flying blind on what was actually happening outside the office.",
-      },
-      blocks: [
-        { type: "speech", avatar: img("YgxBe7wgNd93XD54nNj4qVCKM.jpeg"), label: "Goal:", text: "Replace the patchwork with one connected ecosystem — a web ERP for internal operations and a mobile SFA app for the field —", tail: "sharing the same real-time data, so every department is working off the same picture." },
-      ],
-    },
-    {
-      tone: "surface",
-      eyebrow: "Research Highlights",
-      title: "What every team told us.",
-      lead: { muted: "I had detailed meetings with stakeholders across the business — from sales and warehouse to finance and management — to understand how each team's existing workflow actually worked.", text: "A few findings came up repeatedly and shaped most of the decisions that followed:" },
-      blocks: [
-        {
-          type: "cards",
-          columns: 3,
-          items: [
-            { badge: "1", tone: "lime", title: "Speed in the field is non-negotiable.", text: "Reps needed to place an order in minutes, standing in front of a customer — not after driving back to the office." },
-            { badge: "2", tone: "blue", title: "Visibility beats reporting.", text: "Managers didn't want another report; they wanted to see field activity as it happened." },
-            { badge: "3", tone: "lavender", title: "Reconciliation was eating finance's week.", text: "Manual matching of records across systems was the single biggest time sink for finance." },
-            { badge: "4", tone: "pink", title: "Stock data had to be trustworthy.", text: "Warehouse teams needed one accurate number, not three conflicting ones." },
-            { badge: "5", tone: "navy", title: "Executives wanted answers, not spreadsheets.", text: "A dashboard that surfaced insight, not just data." },
-          ],
-        },
-      ],
-    },
-    {
-      tone: "soft",
-      eyebrow: "Design Process",
-      title: "From discovery to handoff.",
-      blocks: [
-        {
-          type: "flow",
-          items: [
-            { tone: "lime", title: "Discover", text: "Research" },
-            { tone: "blue", title: "Information Architecture", text: "User Flows" },
-            { tone: "lavender", title: "Wireframes", text: "Low-Fidelity → High-Fidelity UI" },
-            { tone: "pink", title: "Interactive Prototypes", text: "Usability Testing → Iterate" },
-            { tone: "navy", title: "Developer Handoff" },
-          ],
-        },
-        { type: "p", text: "A single, shared design system carried color, typography, grid, and components across both the web and mobile products — buttons, cards, tables, forms, modals, status indicators, and charts — so the experience felt like one product family, not two separately built apps, while also speeding up development." },
-        { type: "image", src: img("EmFVWl1XOUIpOmZBShccs9Je7gY.png"), width: 2895, height: 1317, alt: "Shared design system across web and mobile" },
-      ],
-    },
-    {
-      tone: "surface",
-      eyebrow: "The Solution",
-      title: "Two Products,",
-      highlight: "One Ecosystem",
-      blocks: [
-        { type: "image", src: img("xGCZQ7ajlAxUsbDQn7bCbJ1y8d0.png"), width: 4320, height: 2700, alt: "ERP web dashboard and SFA mobile app screens" },
-        {
-          type: "cards",
-          columns: 2,
-          items: [
-            { badge: "W", tone: "blue", title: "ERP (Web)", text: "Dashboard with AI-powered analytics, CRM, Sales, Purchase, Inventory/Warehouse, Accounting, HRMS, Payroll, Assets, Approvals, Reports, Admin. The dashboard surfaces AI-driven insights — trends, anomalies, and forecasts — so executives get a head start on decisions instead of a pile of spreadsheets to interpret themselves." },
-            { badge: "M", tone: "lavender", title: "SFA (Mobile)", text: "Visit planning, GPS check-in, route optimization, order taking, live stock visibility, collections, customer history, promotions, and offline mode with automatic sync. Access is role-based across Warehouse Gatekeeper, Manager, and Sales Person — each sees a tailored view built around their day, not a one-size-fits-all app." },
-          ],
-        },
-        { type: "speech", avatar: img("YgxBe7wgNd93XD54nNj4qVCKM.jpeg"), label: "The core loop:", text: "A rep checks in at a customer site → places an order on the spot → it syncs to the ERP → a manager sees it live, and the warehouse sees updated stock.", tail: "What used to be a next-day report becomes a real-time event." },
-      ],
-    },
-    {
-      tone: "soft",
-      eyebrow: "Key UX Decisions",
-      title: "Decisions that shaped the platform.",
-      blocks: [{ type: "image", src: img("1twxqXaFnUtoI1ev5hocexwaFU.png"), width: 1622, height: 1301, alt: "Key UX decisions" }],
-    },
-    {
-      tone: "primary",
-      rings: true,
-      eyebrow: "Business Impact",
-      title: "What changed for the business.",
-      blocks: [
-        {
-          type: "checklist",
-          items: [
-            "Executives moved from raw reports to AI-generated insights and forecasts",
-            "Faster order processing and less manual data entry",
-            "More accurate, trustworthy inventory data across warehouse and sales",
-            "Real-time visibility into field sales activity for managers",
-            "Faster approval cycles with clear status tracking",
-            "Significantly reduced manual reconciliation time for finance",
-            "One consistent experience across desktop and mobile — no relearning between platforms",
-          ],
-        },
-      ],
-    },
-    {
-      tone: "surface",
-      eyebrow: "Key Takeaway",
-      title: "Complexity and usability aren't in conflict.",
-      layout: "stack",
-      blocks: [
-        {
-          type: "quote",
-          lead: {
-            muted: "Enterprise complexity and usability aren't in conflict when research stays continuous and the design system is shared.",
-            text: "Connecting ERP and SFA into a single ecosystem — instead of treating them as separate products — turned scattered, delayed, third-party-fragmented data into one real-time, organization-wide view. That's the difference between a tool people tolerate and a system they actually run their business on.",
-          },
-        },
-        { type: "image", src: img("WOZPKWx8kur4QnHS2bis2czPAZY.png"), width: 4320, height: 17598, alt: "Final ERP and SFA screens" },
-      ],
-    },
-  ],
-
-  /* ================================================================== */
-  "designing-kitaab": [
-    {
-      tone: "surface",
-      blocks: [{ type: "image", src: img("WlBr30RDmtYNHuJq1Gf3mCoWwBs.png"), width: 6048, height: 11588, alt: "Kitaab case study" }],
-    },
-  ],
-
-  /* ================================================================== */
-  aicompanion: [
-    {
-      tone: "blue",
-      blocks: [{ type: "image", bare: true, src: img("pRGcMvYhnVeige0wst2v4sAXAc.png"), width: 500, height: 500, alt: "AI Companion" }],
-    },
-  ],
-};
+  ];

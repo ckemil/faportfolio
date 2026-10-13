@@ -2,7 +2,7 @@
  * Design tokens — extracted from the "Apty Read — Case Study" Figma frame
  * and applied across the whole portfolio. Change values here, not in components.
  */
-:root {
+.apty-scope {
   /* ---------- colour: brand ---------- */
   --ink: #121a3d;            /* headings, primary text */
   --navy: #1b2559;           /* eyebrows, dark cards, CTAs */
@@ -38,7 +38,6 @@
 
   /* ---------- typography ---------- */
   --font-sans: var(--font-lato), "Lato", system-ui, -apple-system, sans-serif;
-  --font-arabic: var(--font-kufi), "Noto Kufi Arabic", sans-serif;
 
   --fs-display: clamp(76px, 19vw, 280px);
   --fs-h1: clamp(34px, 5vw, 56px);

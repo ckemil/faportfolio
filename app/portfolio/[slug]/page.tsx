@@ -1,15 +1,11 @@
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { projects } from "@/lib/data";
-import { caseStudies } from "@/lib/case-studies";
-import { Section, SectionHeader } from "@/components/ui";
-import Blocks from "@/components/case/Blocks";
-import CaseHero from "@/components/case/CaseHero";
-import { AptyHero } from "@/components/case/AptyRead";
-import Mascot from "@/components/case/Mascot";
-import ScrollProgress from "@/components/ScrollProgress";
+import { caseStudies, projects, type Block } from "@/lib/data";
 import Footer from "@/components/Footer";
-import NextProject from "@/components/case/NextProject";
+import Reveal from "@/components/Reveal";
+import AptyReadCase from "@/components/case/AptyReadCase";
 
 type Params = { slug: string };
 
@@ -25,40 +21,102 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return project ? { title: `${project.title} | Fathima P`, openGraph: { images: [project.cover] } } : {};
 }
 
+function renderBlock(block: Block, i: number) {
+  switch (block.type) {
+    case "h2":
+      return <h2 key={i} className="cs-h2">{block.text}</h2>;
+    case "h3":
+      return <h3 key={i} className="cs-h3">{block.text}</h3>;
+    case "p":
+      return <p key={i} className="cs-p">{block.text}</p>;
+    case "callout":
+      return (
+        <div key={i} className="cs-callout">
+          {block.label && <strong>{block.label} </strong>}
+          {block.text}
+        </div>
+      );
+    case "points":
+      return (
+        <ul key={i} className="cs-points">
+          {block.items.map((it) => (
+            <li key={it.title}>
+              <strong>{it.title}</strong> {it.text}
+            </li>
+          ))}
+        </ul>
+      );
+    case "list":
+      return (
+        <ul key={i} className="cs-list">
+          {block.items.map((it) => (
+            <li key={it}>{it}</li>
+          ))}
+        </ul>
+      );
+    case "image":
+      return (
+        <div key={i} className="cs-image">
+          <Image src={block.src} alt={block.alt} width={1600} height={1000} sizes="(max-width: 1100px) 100vw, 1100px" />
+        </div>
+      );
+  }
+}
+
 export default async function CaseStudy({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const index = projects.findIndex((p) => p.slug === slug);
-  if (index < 0) notFound();
-  const project = projects[index];
-  const next = projects[(index + 1) % projects.length];
-  const sections = caseStudies[slug] ?? [];
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) notFound();
+
+  const nav = (
+    <nav className="cs-nav">
+      <Link href="/#projects" className="back-link">
+        ← Back
+      </Link>
+    </nav>
+  );
+
+  if (project.hero === "aptyread") {
+    return (
+      <main id="top" className="cs">
+        {nav}
+        <AptyReadCase />
+        <Footer cta />
+      </main>
+    );
+  }
+
+  const blocks = caseStudies[slug] ?? [];
 
   return (
-    <>
-      <ScrollProgress />
-      <main id="top" className="ds-stack">
-        <Section tone="blue" rings className="hero-section">
-          {project.hero === "aptyread" ? <AptyHero /> : <CaseHero project={project} />}
-        </Section>
+    <main id="top" className="cs">
+      {nav}
 
-        {sections.map((s, i) => (
-          <Section key={i} tone={s.tone} rings={s.rings} decor={s.mascot && <Mascot side={s.mascot} />}>
-            <SectionHeader
-              eyebrow={s.eyebrow}
-              eyebrowVariant={s.tone === "primary" || s.tone === "navy" ? "white" : "navy"}
-              title={s.title}
-              highlight={s.highlight}
-              lead={s.lead}
-              layout={s.layout}
-              plain={s.plain}
-            />
-            {s.blocks && <Blocks blocks={s.blocks} />}
-          </Section>
-        ))}
+      <header className="cs-header">
+        <Reveal>
+          {(project.year || project.client || project.company || project.website || project.tags) && (
+            <div className="cs-meta">
+              {project.tags?.map((t) => <span key={t}>{t}</span>)}
+              {project.year && <span>{project.year}</span>}
+              {project.client && <span>{project.client}</span>}
+              {project.company && <span>{project.company}</span>}
+              {project.website && (
+                <a href={project.website.href} target="_blank" rel="noopener noreferrer">
+                  {project.website.label}
+                </a>
+              )}
+            </div>
+          )}
+          <h1 className="cs-title">{project.title}</h1>
+        </Reveal>
+        <Reveal delay={0.1} className="cs-cover">
+          <Image src={project.cover} alt={project.title} width={2400} height={1600} priority sizes="(max-width: 1200px) 100vw, 1200px" />
+        </Reveal>
+      </header>
 
-        <NextProject project={next} />
-        <Footer />
-      </main>
-    </>
+      <article className="cs-body">{blocks.map(renderBlock)}</article>
+
+      <Footer cta />
+    </main>
   );
 }
