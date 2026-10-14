@@ -1,5 +1,5 @@
 /**
- * Canvas drawing for Playground Jump — one-line art style:
+ * Canvas drawing for Doodle Dash — one-line art style:
  * everything is drawn with a single, even ink stroke on off-white paper, no colour fills.
  * Shapes that must hide what's behind them are filled with the paper colour.
  */

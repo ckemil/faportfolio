@@ -3,9 +3,9 @@ import Nav from "@/components/Nav";
 import Runner from "@/components/playground/Runner";
 
 export const metadata: Metadata = {
-  title: "Playground Jump — Learn Product Design by Playing",
+  title: "Doodle Dash — A Product Design Game",
   description:
-    "Playground Jump is a free endless-runner browser game by UI/UX designer Fathima Ibrahim: jump between platforms, collect design elements and beat your high score.",
+    "Doodle Dash is a free endless-runner browser game by UI/UX designer Fathima Ibrahim: jump between platforms, collect design elements and beat your high score.",
   alternates: { canonical: "/playground" },
 };
 

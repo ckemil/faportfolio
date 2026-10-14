@@ -5,7 +5,7 @@ import { drawBackdrop, drawElementCard, drawKid, drawPlatform, drawSparkle, draw
 import { setMuted, sfx } from "./sound";
 
 /*
- * Playground Jump — an endless runner in the spirit of the offline "dino" game.
+ * Doodle Dash — an endless runner in the spirit of the offline "dino" game.
  * The kid runs on her own; jump between playground platforms, grab stars and design elements
  * for bonus points, and beat your high score. One fall ends the run.
  */
@@ -355,7 +355,7 @@ export default function Runner() {
       onPointerCancel={release}
       onContextMenu={(e) => e.preventDefault()}
     >
-      <canvas ref={canvasRef} className="pj-canvas" role="img" aria-label="Playground Jump. Press space or tap to jump between platforms." />
+      <canvas ref={canvasRef} className="pj-canvas" role="img" aria-label="Doodle Dash. Press space or tap to jump between platforms." />
 
       <div className="pj-hud">
         <button type="button" className="pj-round" onClick={toggleMute} aria-label={muted ? "Turn sound on" : "Turn sound off"} aria-pressed={!muted}>
@@ -391,7 +391,7 @@ export default function Runner() {
       {phase === "ready" && (
         <div className="pj-center">
           <h1 className="pj-title">
-            Playground <span>Jump</span>
+            Doodle <span>Dash</span>
           </h1>
           <p>
             Press <kbd>Space</kbd> or tap to jump

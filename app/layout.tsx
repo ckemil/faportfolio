@@ -31,7 +31,7 @@ const caveat = Caveat({ subsets: ["latin"], weight: ["500"], variable: "--font-h
 // WID case study only: display serif + UI sans from its Figma file.
 const instrument = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--font-instrument" });
 const raleway = Raleway({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-raleway" });
-// Outfit: the Financial Partner Platform specimen and the Playground Jump game.
+// Outfit: the Financial Partner Platform specimen and the Doodle Dash game.
 const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-outfit" });
 const lalezar = Lalezar({ subsets: ["arabic", "latin"], weight: "400", variable: "--font-display" });
 
