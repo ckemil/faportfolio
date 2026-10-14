@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { radar, type RadarKind } from "@/lib/data";
 import Reveal from "./Reveal";
+import ArrowUpRight from "./ArrowUpRight";
 
 const kinds: ("All" | RadarKind)[] = ["All", "Trend", "Tool", "Read", "Inspiration"];
 
@@ -44,7 +45,7 @@ export default function Radar() {
                 <h3>{r.title}</h3>
                 <p>{r.note}</p>
                 <span className="radar-source">
-                  {r.source} <span aria-hidden>↗</span>
+                  {r.source} <ArrowUpRight />
                 </span>
               </a>
             </motion.li>

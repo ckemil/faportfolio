@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MotionProvider, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import ScrollProgress from "@/components/ScrollProgress";
+import ArrowUpRight from "@/components/ArrowUpRight";
 
 /**
  * Financial Partner Platform — concept case study, built from the Figma frame
@@ -129,7 +130,7 @@ export default function FppCase() {
               <p>Advisory work spans relationships, incomplete applications, investments, renewals and earnings. Fragmented tools can make it difficult to see what needs attention.</p>
             </div>
             <p className="fpp-question">How might a mobile application help financial partners understand their business, review client needs, and prioritize their next action?</p>
-            <p className="fpp-label">THE GUIDING DESIGN QUESTION ↗</p>
+            <p className="fpp-label">THE GUIDING DESIGN QUESTION <ArrowUpRight /></p>
           </Reveal>
 
           <div className="fpp-split">

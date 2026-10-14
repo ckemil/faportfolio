@@ -1,4 +1,5 @@
 import { LINKEDIN, RESUME } from "@/lib/data";
+import ArrowUpRight from "./ArrowUpRight";
 
 const links = [
   { label: "Resume", href: RESUME, external: true },
@@ -21,7 +22,7 @@ export default function Nav() {
           {links.map((l) => (
             <a key={l.label} href={l.href} {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
               {l.label}
-              {l.external && <span aria-hidden>↗</span>}
+              {l.external && <ArrowUpRight />}
             </a>
           ))}
         </nav>

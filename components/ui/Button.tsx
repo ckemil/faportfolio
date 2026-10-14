@@ -14,7 +14,7 @@ export default function Button({
   href?: string;
   children: React.ReactNode;
   variant?: Variant;
-  /** Trailing icon in a circle (e.g. "↗"). */
+  /** Trailing icon in a circle (e.g. an arrow). */
   icon?: React.ReactNode;
   block?: boolean;
   external?: boolean;

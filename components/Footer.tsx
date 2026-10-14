@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LINKEDIN, RESUME } from "@/lib/data";
 import LocalTime from "./LocalTime";
 import TicTacToe from "./TicTacToe";
+import ArrowUpRight from "./ArrowUpRight";
 
 const menu = [
   { label: "Work", href: "/#projects" },
@@ -58,10 +59,10 @@ export default function Footer({ cta }: { cta?: boolean }) {
             <span className="label">Elsewhere</span>
             <div className="footer-links">
               <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
-                LinkedIn ↗
+                LinkedIn <ArrowUpRight />
               </a>
               <a href={RESUME} target="_blank" rel="noopener noreferrer">
-                Resume ↗
+                Resume <ArrowUpRight />
               </a>
               <button type="button" onClick={() => setGame(true)}>
                 Tic Tac Toe

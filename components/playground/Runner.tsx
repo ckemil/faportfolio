@@ -69,6 +69,7 @@ export default function Runner() {
   const [hi, setHi] = useState(0);
   const [newHi, setNewHi] = useState(false);
   const [muted, setMutedState] = useState(false);
+  const [run, setRun] = useState<{ metres: number; sakura: number; learned: (typeof ELEMENTS)[number][]; best: number } | null>(null);
   const [tip, setTip] = useState<(typeof ELEMENTS)[number] | null>(null);
   const tipRef = useRef(false); // the run is paused while a design tip is open
 
@@ -145,6 +146,8 @@ export default function Runner() {
     let speed = 300;
     let dist = 0;
     let bonus = 0;
+    let sakura = 0;
+    let learned: (typeof ELEMENTS)[number][] = [];
     let t = 0;
     let elIndex = 0;
     let sincEl = 0;
@@ -180,6 +183,8 @@ export default function Runner() {
       speed = 300;
       dist = 0;
       bonus = 0;
+      sakura = 0;
+      learned = [];
       elIndex = Math.floor(Math.random() * ELEMENTS.length);
       sincEl = 2;
       shownScore = -1;
@@ -206,6 +211,7 @@ export default function Runner() {
       sfx("hurt");
       const final = Math.floor(dist / 10) + bonus;
       const best = readNum(HI_KEY);
+      setRun({ metres: Math.floor(dist / 40), sakura, learned: [...learned], best: Math.max(best, final) });
       if (final > best) {
         write(HI_KEY, String(final));
         setHi(final);
@@ -264,10 +270,12 @@ export default function Runner() {
           pk.taken = true;
           if (pk.kind === "star") {
             bonus += 5;
+            sakura++;
             burst(pk.x, pk.y, "#f6b3c3");
             sfx("star");
           } else {
             bonus += 25;
+            learned.push(pk.el!);
             burst(pk.x, pk.y, "#d4472f", 16);
             sfx("element");
             jumpHeld.current = false;
@@ -338,7 +346,8 @@ export default function Runner() {
     <div
       className="pj-game"
       onPointerDown={(e) => {
-        if ((e.target as HTMLElement).closest("button")) return;
+        // buttons handle themselves; reading the result card shouldn't restart the run
+        if ((e.target as HTMLElement).closest("button, .pj-result")) return;
         e.preventDefault();
         press();
       }}
@@ -360,7 +369,7 @@ export default function Runner() {
 
       {tip && (
         <div className="pj-center pj-center--tip" role="dialog" aria-modal="true" aria-labelledby="pj-tip-title">
-          <div className="pj-tip">
+          <div className="pj-card pj-tip">
             <span className="pj-seal" aria-hidden>
               学
             </span>
@@ -391,19 +400,62 @@ export default function Runner() {
         </div>
       )}
 
-      {phase === "over" && (
-        <div className="pj-center pj-center--over">
-          <p className="pj-over">G A M E &nbsp; O V E R</p>
-          <p className="pj-final">
-            {pad(score)}
-            {newHi && <em>New high score!</em>}
-          </p>
-          <button type="button" className="pj-replay" onClick={press} aria-label="Play again">
-            ↻
-          </button>
-          <p className="pj-small">
-            Press <kbd>Space</kbd> or tap to play again
-          </p>
+      {phase === "over" && run && (
+        <div className="pj-center pj-center--over" role="dialog" aria-modal="true" aria-labelledby="pj-over-title">
+          <div className="pj-card pj-result">
+            <span className="pj-seal" aria-hidden>
+              終
+            </span>
+            <p className="pj-tip-kicker">{newHi ? "New high score!" : "Run complete"}</p>
+            <h2 id="pj-over-title">Game Over</h2>
+
+            <div className="pj-result-score">
+              <div>
+                <span>Score</span>
+                <strong>{pad(score)}</strong>
+              </div>
+              <div>
+                <span>Best</span>
+                <strong>{pad(run.best)}</strong>
+              </div>
+            </div>
+            {!newHi && run.best > score && <p className="pj-result-gap">{run.best - score} points short of your best — so close.</p>}
+
+            <dl className="pj-result-stats">
+              <div>
+                <dt>Distance</dt>
+                <dd>{run.metres} m</dd>
+              </div>
+              <div>
+                <dt>🌸 Sakura</dt>
+                <dd>{run.sakura}</dd>
+              </div>
+              <div>
+                <dt>Tips learned</dt>
+                <dd>{run.learned.length}</dd>
+              </div>
+            </dl>
+
+            {run.learned.length > 0 ? (
+              <ul className="pj-result-learned" aria-label="Design elements collected this run">
+                {run.learned.map((el, i) => (
+                  <li key={i}>
+                    <span aria-hidden>{el.glyph}</span>
+                    {el.name}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="pj-result-hint">Grab a hanging plaque next run to learn a design tip.</p>
+            )}
+
+            <button type="button" className="pj-got pj-again" autoFocus onClick={press}>
+              ↻ Play again
+            </button>
+            <p className="pj-small">
+              or press <kbd>Space</kbd>
+            </p>
+          </div>
         </div>
       )}
     </div>

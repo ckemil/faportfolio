@@ -35,9 +35,8 @@
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
   padding: 16px; text-align: center; pointer-events: none;
 }
-.pj-center--over { background: rgba(246, 230, 200, 0.55); }
-.pj-center .pj-replay { pointer-events: auto; }
-.pj-title { font-family: var(--font-instrument), Georgia, serif; font-size: clamp(40px, 7vw, 88px); font-weight: 400; line-height: 0.95; color: var(--pj-navy); }
+.pj-center--over { background: rgba(42, 36, 32, 0.35); pointer-events: auto; }
+.pj-center .pj-title { font-family: var(--font-instrument), Georgia, serif; font-size: clamp(40px, 7vw, 88px); font-weight: 400; line-height: 0.95; color: var(--pj-navy); }
 .pj-title::after { content: "遊び場ジャンプ"; display: block; margin-top: 10px; font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; font-size: 0.26em; letter-spacing: 0.4em; color: var(--pj-pink); }
 .pj-title span { color: var(--pj-pink); }
 .pj-center p { font-size: clamp(15px, 1.8vw, 20px); font-weight: 600; color: var(--pj-navy); }
@@ -46,30 +45,22 @@
   display: inline-block; padding: 2px 8px; border-radius: 3px; background: #fbf4e6; border: 1.5px solid var(--pj-navy);
   box-shadow: 0 2px 0 var(--pj-navy); font-family: var(--mono); font-size: 0.85em; color: var(--pj-navy);
 }
-.pj-over { font-family: var(--mono); font-size: clamp(18px, 3vw, 32px) !important; font-weight: 500 !important; letter-spacing: 0.08em; color: var(--pj-navy); }
-.pj-final { display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: var(--mono); font-size: clamp(26px, 4vw, 44px) !important; }
-.pj-final em { padding: 3px 12px; border-radius: 2px; background: var(--pj-pink); color: #fff; font-family: var(--font-outfit), sans-serif; font-size: 14px; font-style: normal; font-weight: 700; }
-.pj-replay {
-  display: grid; place-items: center; width: 60px; height: 60px; margin: 6px 0; border: 3px solid var(--pj-navy); border-radius: 4px;
-  background: var(--pj-purple); color: #fbf4e6; font-size: 30px; font-weight: 700; box-shadow: 4px 4px 0 var(--pj-navy);
-}
-.pj-replay:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--pj-navy); }
-.pj-replay:focus-visible, .pj-round:focus-visible { outline: 3px solid var(--pj-pink); outline-offset: 3px; }
+.pj-round:focus-visible { outline: 3px solid var(--pj-pink); outline-offset: 3px; }
 
 /* ---------- design tip card (pauses the run) ---------- */
 .pj-center--tip { background: rgba(42, 36, 32, 0.35); pointer-events: auto; }
-.pj-tip {
+.pj-card {
   position: relative; width: min(420px, 100%); padding: 26px 26px 18px; text-align: left;
   background: #fbf4e6 var(--grain); border: 3px solid var(--pj-navy); border-radius: 4px; box-shadow: 8px 8px 0 var(--pj-navy);
 }
-.pj-tip::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: var(--pj-purple); border-bottom: 2px solid var(--pj-navy); }
+.pj-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: var(--pj-purple); border-bottom: 2px solid var(--pj-navy); }
 .pj-seal {
   position: absolute; right: 18px; top: 22px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 6px;
   background: var(--pj-pink); color: #fbf4e6; rotate: 6deg;
   font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; font-size: 24px; font-weight: 700;
 }
 .pj-tip-kicker { font-family: var(--mono); font-size: 12px !important; font-weight: 500 !important; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pj-pink) !important; }
-.pj-tip h2 { margin-top: 6px; font-family: var(--font-instrument), Georgia, serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 400; color: var(--pj-navy); }
+.pj-card h2 { margin-top: 6px; font-family: var(--font-instrument), Georgia, serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 400; color: var(--pj-navy); }
 .pj-tip-text { margin-top: 10px; font-size: clamp(15px, 1.6vw, 17px) !important; font-weight: 500 !important; line-height: 1.5; color: var(--pj-text) !important; }
 .pj-got {
   margin-top: 18px; padding: 11px 18px; border: 3px solid var(--pj-navy); border-radius: 4px;
@@ -77,16 +68,34 @@
 }
 .pj-got:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--pj-navy); }
 .pj-got:focus-visible { outline: 3px solid var(--pj-pink); outline-offset: 3px; }
-.pj-tip .pj-small { margin-top: 8px; }
+.pj-card .pj-small { margin-top: 8px; }
+
+/* ---------- game over result card ---------- */
+.pj-result { width: min(440px, 100%); max-height: 100%; overflow: auto; }
+.pj-result-score { display: grid; grid-template-columns: 1fr 1fr; margin-top: 14px; border: 2px solid var(--pj-navy); border-radius: 3px; }
+.pj-result-score div { padding: 10px 14px; }
+.pj-result-score div + div { border-left: 2px solid var(--pj-navy); background: #f3e6cf; }
+.pj-result-score span { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pj-text); }
+.pj-result-score strong { display: block; margin-top: 2px; font-family: var(--mono); font-size: clamp(24px, 3.4vw, 34px); font-weight: 500; letter-spacing: 0.04em; color: var(--pj-navy); }
+.pj-result-gap { margin-top: 8px; font-size: 13px !important; font-weight: 500 !important; color: var(--pj-pink) !important; }
+.pj-result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0 0; }
+.pj-result-stats div { padding: 8px 10px; border-radius: 3px; background: rgba(42, 36, 32, 0.06); }
+.pj-result-stats dt { font-size: 11px; color: var(--pj-text); }
+.pj-result-stats dd { margin: 2px 0 0; font-size: 18px; font-weight: 700; color: var(--pj-navy); }
+.pj-result-learned { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.pj-result-learned li { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border: 1.5px solid var(--pj-navy); border-radius: 3px; background: #e9c99a; font-size: 13px; font-weight: 600; color: var(--pj-navy); }
+.pj-result-hint { margin-top: 12px; font-size: 13px !important; font-weight: 500 !important; color: var(--pj-text) !important; }
+.pj-again { width: 100%; font-size: 17px; padding: 13px 18px; }
 
 .pj-foot { margin-top: 18px; text-align: center; font-size: 14px; }
 
 @media (max-width: 640px) {
   .pj { padding-top: 84px; }
   .pj-panel { padding: 5px; box-shadow: 5px 5px 0 rgba(42, 36, 32, 0.85); }
-  .pj-tip { padding: 20px 18px 14px; }
+  .pj-card { padding: 18px 16px 12px; }
+  .pj-result-stats dd { font-size: 15px; }
+  .pj-result-learned li { font-size: 12px; padding: 4px 8px; }
   .pj-seal { width: 36px; height: 36px; font-size: 19px; }
   .pj-round { width: 34px; height: 34px; font-size: 14px; }
   .pj-scores { gap: 10px; padding: 5px 10px; }
-  .pj-replay { width: 48px; height: 48px; font-size: 24px; }
 }

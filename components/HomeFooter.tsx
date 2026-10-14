@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { avatar, EMAIL, LINKEDIN, RESUME } from "@/lib/data";
 import LocalTime from "./LocalTime";
+import ArrowUpRight from "./ArrowUpRight";
 
 const VIDEO = "/video/footer.mp4";
 
@@ -39,10 +40,10 @@ function ContactCard() {
 
       <div className="contact-card-actions">
         <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-          LinkedIn <span aria-hidden>↗</span>
+          LinkedIn <ArrowUpRight />
         </a>
         <a href={RESUME} target="_blank" rel="noopener noreferrer" className="btn btn-soft">
-          Resume <span aria-hidden>↗</span>
+          Resume <ArrowUpRight />
         </a>
       </div>
 

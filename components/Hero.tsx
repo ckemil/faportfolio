@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "framer-motion";
 import { avatar, LINKEDIN } from "@/lib/data";
+import ArrowUpRight from "./ArrowUpRight";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const NAME = "فاطمة إبراهيم";
@@ -163,7 +164,7 @@ export default function Hero() {
           transition={{ delay: 0.7, duration: 0.8, ease }}
         >
           <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-            Contact me <span aria-hidden>↗</span>
+            Contact me <ArrowUpRight />
           </a>
         </motion.div>
       </div>
