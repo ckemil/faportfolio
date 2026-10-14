@@ -69,7 +69,7 @@ export default function Runner() {
   const [hi, setHi] = useState(0);
   const [newHi, setNewHi] = useState(false);
   const [muted, setMutedState] = useState(false);
-  const [run, setRun] = useState<{ metres: number; sakura: number; learned: (typeof ELEMENTS)[number][]; best: number } | null>(null);
+  const [run, setRun] = useState<{ metres: number; stars: number; learned: (typeof ELEMENTS)[number][]; best: number } | null>(null);
   const [tip, setTip] = useState<(typeof ELEMENTS)[number] | null>(null);
   const tipRef = useRef(false); // the run is paused while a design tip is open
 
@@ -146,7 +146,7 @@ export default function Runner() {
     let speed = 300;
     let dist = 0;
     let bonus = 0;
-    let sakura = 0;
+    let stars = 0;
     let learned: (typeof ELEMENTS)[number][] = [];
     let t = 0;
     let elIndex = 0;
@@ -183,7 +183,7 @@ export default function Runner() {
       speed = 300;
       dist = 0;
       bonus = 0;
-      sakura = 0;
+      stars = 0;
       learned = [];
       elIndex = Math.floor(Math.random() * ELEMENTS.length);
       sincEl = 2;
@@ -211,7 +211,7 @@ export default function Runner() {
       sfx("hurt");
       const final = Math.floor(dist / 10) + bonus;
       const best = readNum(HI_KEY);
-      setRun({ metres: Math.floor(dist / 40), sakura, learned: [...learned], best: Math.max(best, final) });
+      setRun({ metres: Math.floor(dist / 40), stars, learned: [...learned], best: Math.max(best, final) });
       if (final > best) {
         write(HI_KEY, String(final));
         setHi(final);
@@ -270,7 +270,7 @@ export default function Runner() {
           pk.taken = true;
           if (pk.kind === "star") {
             bonus += 5;
-            sakura++;
+            stars++;
             burst(pk.x, pk.y, "#f6b3c3");
             sfx("star");
           } else {
@@ -371,7 +371,7 @@ export default function Runner() {
         <div className="pj-center pj-center--tip" role="dialog" aria-modal="true" aria-labelledby="pj-tip-title">
           <div className="pj-card pj-tip">
             <span className="pj-seal" aria-hidden>
-              学
+              ✎
             </span>
             <p className="pj-tip-kicker">Design Tip · +25</p>
             <h2 id="pj-tip-title">
@@ -396,7 +396,7 @@ export default function Runner() {
           <p>
             Press <kbd>Space</kbd> or tap to jump
           </p>
-          <p className="pj-small">Hold to jump higher · Collect sakura and design plaques for bonus points</p>
+          <p className="pj-small">Hold to jump higher · Collect stars and design cards for bonus points</p>
         </div>
       )}
 
@@ -404,7 +404,7 @@ export default function Runner() {
         <div className="pj-center pj-center--over" role="dialog" aria-modal="true" aria-labelledby="pj-over-title">
           <div className="pj-card pj-result">
             <span className="pj-seal" aria-hidden>
-              終
+              ★
             </span>
             <p className="pj-tip-kicker">{newHi ? "New high score!" : "Run complete"}</p>
             <h2 id="pj-over-title">Game Over</h2>
@@ -414,12 +414,7 @@ export default function Runner() {
                 <span>Score</span>
                 <strong>{pad(score)}</strong>
               </div>
-              <div>
-                <span>Best</span>
-                <strong>{pad(run.best)}</strong>
-              </div>
             </div>
-            {!newHi && run.best > score && <p className="pj-result-gap">{run.best - score} points short of your best — so close.</p>}
 
             <dl className="pj-result-stats">
               <div>
@@ -427,8 +422,8 @@ export default function Runner() {
                 <dd>{run.metres} m</dd>
               </div>
               <div>
-                <dt>🌸 Sakura</dt>
-                <dd>{run.sakura}</dd>
+                <dt>★ Stars</dt>
+                <dd>{run.stars}</dd>
               </div>
               <div>
                 <dt>Tips learned</dt>
@@ -446,7 +441,7 @@ export default function Runner() {
                 ))}
               </ul>
             ) : (
-              <p className="pj-result-hint">Grab a hanging plaque next run to learn a design tip.</p>
+              <p className="pj-result-hint">Grab a hanging design card next run to learn a tip.</p>
             )}
 
             <button type="button" className="pj-got pj-again" autoFocus onClick={press}>

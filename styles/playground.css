@@ -1,89 +1,75 @@
 /*
- * Playground Jump — endless runner page in a Japanese woodblock (ukiyo-e) style. Scoped to .pj.
- * Washi paper, sumi ink, vermilion lacquer and sakura pink.
+ * Playground Jump — endless runner page in a one-line art style. Scoped to .pj.
+ * Off-white paper, a single ink colour, even line weights, no colour fills.
  */
-.pj-page { background: #f3ead8 var(--grain); min-height: 100svh; }
+.pj-page { background: #f2efe8; min-height: 100svh; }
 .pj {
-  --pj-purple: #c8412f;   /* vermilion: primary actions */
-  --pj-pink: #d9412b;     /* rising-sun red accent */
-  --pj-navy: #2a2420;     /* sumi ink */
-  --pj-text: #5a4e44;
+  --pj-ink: #1c1b19;
+  --pj-paper: #faf8f3;
+  --pj-text: #5c5952;
+  --pj-muted: #8a867c;
   max-width: 1200px; margin: 0 auto; padding: 96px var(--gutter) 40px;
   font-family: var(--font-outfit), "Outfit", sans-serif; color: var(--pj-text); letter-spacing: 0;
 }
-.pj-panel {
-  padding: 10px; border-radius: 6px; background: #fbf4e6;
-  border: 3px solid var(--pj-navy); box-shadow: 8px 8px 0 rgba(42, 36, 32, 0.85);
-}
+.pj-panel { padding: 10px; border-radius: 22px; background: var(--pj-paper); border: 2.5px solid var(--pj-ink); }
 
 /* ---------- canvas + hud ---------- */
 .pj-game { position: relative; touch-action: manipulation; user-select: none; -webkit-user-select: none; cursor: pointer; }
-.pj-canvas { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 2px; background: #f6e6c8; font-family: var(--font-outfit), sans-serif; }
+.pj-canvas { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; background: var(--pj-paper); font-family: var(--font-outfit), sans-serif; }
 .pj-hud { position: absolute; left: 14px; right: 14px; top: 14px; display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
 .pj-round {
-  pointer-events: auto; display: grid; place-items: center; width: 42px; height: 42px; border: 0; border-radius: 50%;
-  background: #fbf4e6; border: 2px solid var(--pj-navy); font-size: 16px;
+  pointer-events: auto; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+  background: var(--pj-paper); border: 2px solid var(--pj-ink); font-size: 16px; filter: grayscale(1);
 }
 .pj-scores {
-  display: flex; gap: 18px; padding: 6px 14px; border-radius: 3px; background: #fbf4e6; border: 2px solid var(--pj-navy);
-  font-family: var(--mono); font-size: clamp(14px, 2vw, 20px); font-weight: 500; letter-spacing: 0.06em; color: var(--pj-navy);
+  display: flex; gap: 18px; padding: 6px 14px; border-radius: 999px; background: var(--pj-paper); border: 2px solid var(--pj-ink);
+  font-family: var(--mono); font-size: clamp(14px, 2vw, 20px); font-weight: 500; letter-spacing: 0.06em; color: var(--pj-ink);
 }
-.pj-hi { color: #a8412f; }
+.pj-hi { color: var(--pj-muted); }
 
-/* ---------- start / game over overlays (drawn over the canvas, no separate screens) ---------- */
+/* ---------- start overlay ---------- */
 .pj-center {
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
   padding: 16px; text-align: center; pointer-events: none;
 }
-.pj-center--over { background: rgba(42, 36, 32, 0.35); pointer-events: auto; }
-.pj-center .pj-title { font-family: var(--font-instrument), Georgia, serif; font-size: clamp(40px, 7vw, 88px); font-weight: 400; line-height: 0.95; color: var(--pj-navy); }
-.pj-title::after { content: "遊び場ジャンプ"; display: block; margin-top: 10px; font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; font-size: 0.26em; letter-spacing: 0.4em; color: var(--pj-pink); }
-.pj-title span { color: var(--pj-pink); }
-.pj-center p { font-size: clamp(15px, 1.8vw, 20px); font-weight: 600; color: var(--pj-navy); }
+.pj-center .pj-title { font-family: var(--font-instrument), Georgia, serif; font-size: clamp(40px, 7vw, 88px); font-weight: 400; line-height: 0.95; color: var(--pj-ink); }
+.pj-title span { font-style: italic; }
+.pj-center p { font-size: clamp(15px, 1.8vw, 20px); font-weight: 600; color: var(--pj-ink); }
 .pj-center .pj-small { font-size: clamp(12px, 1.3vw, 15px); font-weight: 500; color: var(--pj-text); }
 .pj kbd {
-  display: inline-block; padding: 2px 8px; border-radius: 3px; background: #fbf4e6; border: 1.5px solid var(--pj-navy);
-  box-shadow: 0 2px 0 var(--pj-navy); font-family: var(--mono); font-size: 0.85em; color: var(--pj-navy);
+  display: inline-block; padding: 1px 8px; border-radius: 6px; background: var(--pj-paper); border: 1.5px solid var(--pj-ink);
+  font-family: var(--mono); font-size: 0.85em; color: var(--pj-ink);
 }
-.pj-round:focus-visible { outline: 3px solid var(--pj-pink); outline-offset: 3px; }
+.pj-round:focus-visible { outline: 2px solid var(--pj-ink); outline-offset: 3px; }
 
-/* ---------- design tip card (pauses the run) ---------- */
-.pj-center--tip { background: rgba(42, 36, 32, 0.35); pointer-events: auto; }
-.pj-card {
-  position: relative; width: min(420px, 100%); padding: 26px 26px 18px; text-align: left;
-  background: #fbf4e6 var(--grain); border: 3px solid var(--pj-navy); border-radius: 4px; box-shadow: 8px 8px 0 var(--pj-navy);
-}
-.pj-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: var(--pj-purple); border-bottom: 2px solid var(--pj-navy); }
+/* ---------- tip + result cards (overlay the canvas, pause the run) ---------- */
+.pj-center--tip, .pj-center--over { background: rgba(250, 248, 243, 0.6); pointer-events: auto; }
+.pj-card { position: relative; width: min(420px, 100%); padding: 24px 24px 18px; text-align: left; background: var(--pj-paper); border: 2.5px solid var(--pj-ink); border-radius: 18px; }
 .pj-seal {
-  position: absolute; right: 18px; top: 22px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 6px;
-  background: var(--pj-pink); color: #fbf4e6; rotate: 6deg;
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; font-size: 24px; font-weight: 700;
+  position: absolute; right: 18px; top: 18px; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+  border: 2px solid var(--pj-ink); color: var(--pj-ink); font-size: 20px;
 }
-.pj-tip-kicker { font-family: var(--mono); font-size: 12px !important; font-weight: 500 !important; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pj-pink) !important; }
-.pj-card h2 { margin-top: 6px; font-family: var(--font-instrument), Georgia, serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 400; color: var(--pj-navy); }
+.pj-tip-kicker { font-family: var(--mono); font-size: 12px !important; font-weight: 500 !important; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pj-muted) !important; }
+.pj-card h2 { margin-top: 6px; font-family: var(--font-instrument), Georgia, serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 400; color: var(--pj-ink); }
+.pj-card h2 span { filter: grayscale(1); }
 .pj-tip-text { margin-top: 10px; font-size: clamp(15px, 1.6vw, 17px) !important; font-weight: 500 !important; line-height: 1.5; color: var(--pj-text) !important; }
-.pj-got {
-  margin-top: 18px; padding: 11px 18px; border: 3px solid var(--pj-navy); border-radius: 4px;
-  background: var(--pj-purple); color: #fbf4e6; font: 600 15px/1 var(--font-outfit), sans-serif; box-shadow: 4px 4px 0 var(--pj-navy);
-}
-.pj-got:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--pj-navy); }
-.pj-got:focus-visible { outline: 3px solid var(--pj-pink); outline-offset: 3px; }
+.pj-got { margin-top: 18px; padding: 11px 20px; border: 2.5px solid var(--pj-ink); border-radius: 999px; background: var(--pj-ink); color: var(--pj-paper); font: 600 15px/1 var(--font-outfit), sans-serif; }
+.pj-got:hover { background: #3a3832; }
+.pj-got:active { transform: translateY(1px); }
+.pj-got:focus-visible { outline: 2px solid var(--pj-ink); outline-offset: 3px; }
 .pj-card .pj-small { margin-top: 8px; }
 
-/* ---------- game over result card ---------- */
 .pj-result { width: min(440px, 100%); max-height: 100%; overflow: auto; }
-.pj-result-score { display: grid; grid-template-columns: 1fr 1fr; margin-top: 14px; border: 2px solid var(--pj-navy); border-radius: 3px; }
-.pj-result-score div { padding: 10px 14px; }
-.pj-result-score div + div { border-left: 2px solid var(--pj-navy); background: #f3e6cf; }
+.pj-result-score { display: grid; margin-top: 14px; padding: 10px 14px; border: 2px solid var(--pj-ink); border-radius: 12px; }
 .pj-result-score span { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pj-text); }
-.pj-result-score strong { display: block; margin-top: 2px; font-family: var(--mono); font-size: clamp(24px, 3.4vw, 34px); font-weight: 500; letter-spacing: 0.04em; color: var(--pj-navy); }
-.pj-result-gap { margin-top: 8px; font-size: 13px !important; font-weight: 500 !important; color: var(--pj-pink) !important; }
+.pj-result-score strong { display: block; margin-top: 2px; font-family: var(--mono); font-size: clamp(24px, 3.4vw, 34px); font-weight: 500; letter-spacing: 0.04em; color: var(--pj-ink); }
 .pj-result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0 0; }
-.pj-result-stats div { padding: 8px 10px; border-radius: 3px; background: rgba(42, 36, 32, 0.06); }
+.pj-result-stats div { padding: 8px 10px; border-radius: 10px; border: 1.5px solid var(--pj-ink); }
 .pj-result-stats dt { font-size: 11px; color: var(--pj-text); }
-.pj-result-stats dd { margin: 2px 0 0; font-size: 18px; font-weight: 700; color: var(--pj-navy); }
+.pj-result-stats dd { margin: 2px 0 0; font-size: 18px; font-weight: 700; color: var(--pj-ink); }
 .pj-result-learned { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-.pj-result-learned li { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border: 1.5px solid var(--pj-navy); border-radius: 3px; background: #e9c99a; font-size: 13px; font-weight: 600; color: var(--pj-navy); }
+.pj-result-learned li { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border: 1.5px solid var(--pj-ink); border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--pj-ink); }
+.pj-result-learned li span { filter: grayscale(1); }
 .pj-result-hint { margin-top: 12px; font-size: 13px !important; font-weight: 500 !important; color: var(--pj-text) !important; }
 .pj-again { width: 100%; font-size: 17px; padding: 13px 18px; }
 
@@ -91,11 +77,12 @@
 
 @media (max-width: 640px) {
   .pj { padding-top: 84px; }
-  .pj-panel { padding: 5px; box-shadow: 5px 5px 0 rgba(42, 36, 32, 0.85); }
+  .pj-panel { padding: 5px; border-radius: 16px; }
+  .pj-canvas { border-radius: 11px; }
   .pj-card { padding: 18px 16px 12px; }
   .pj-result-stats dd { font-size: 15px; }
   .pj-result-learned li { font-size: 12px; padding: 4px 8px; }
-  .pj-seal { width: 36px; height: 36px; font-size: 19px; }
+  .pj-seal { width: 36px; height: 36px; font-size: 17px; }
   .pj-round { width: 34px; height: 34px; font-size: 14px; }
   .pj-scores { gap: 10px; padding: 5px 10px; }
 }
