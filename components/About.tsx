@@ -20,8 +20,6 @@ const skills = [
   { title: "Design systems", text: "Shared components and tokens that keep teams fast and products consistent." },
 ];
 
-// Drawn from the case studies on this site.
-const industries = ["Fintech & accounting", "Enterprise ERP", "AI products", "EdTech", "Luxury e-commerce"];
 
 export default function About() {
   return (
@@ -37,7 +35,7 @@ export default function About() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="about-lead">
-            I’m a Senior UI/UX and Product Designer in the UAE, turning complex problems into simple, elegant products
+            I’m a Senior Product Designer in the UAE, turning complex problems into simple, elegant products
             across web and mobile.
           </p>
           <p className="about-body">
@@ -56,12 +54,6 @@ export default function About() {
                   {s.text}
                 </span>
               </li>
-            ))}
-          </ul>
-          <p className="about-sub">Industries I’ve designed for</p>
-          <ul className="about-chips">
-            {industries.map((d) => (
-              <li key={d}>{d}</li>
             ))}
           </ul>
         </Reveal>

@@ -297,9 +297,6 @@ button { font: inherit; letter-spacing: inherit; cursor: pointer; border: 0; bac
 .about-skills li { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.5; color: var(--muted); }
 .about-skills strong { display: block; font-size: 17px; font-weight: 600; letter-spacing: -0.04em; color: var(--ink); }
 .about-skill-num { flex: none; padding-top: 2px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
-.about-sub { margin-top: 24px; font-size: 13px; color: var(--muted); }
-.about-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.about-chips li { padding: 6px 12px; border-radius: 999px; background: var(--soft); font-size: 14px; color: var(--ink); }
 .about-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
 
 /* collage: big main photo with small stickers pinned around it (positions in % of the board) */
