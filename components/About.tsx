@@ -14,45 +14,47 @@ const stickers = [
 ];
 const emoji = ["🎨", "⚽", "🎮"];
 
-const skills = [
-  { title: "UX strategy", text: "Framing the right problem with research, flows and information architecture." },
-  { title: "Interaction design", text: "Clear, considered journeys for web dashboards and mobile apps." },
-  { title: "Design systems", text: "Shared components and tokens that keep teams fast and products consistent." },
-];
+// Simple line icons so the skill cards match the site's dashed, monochrome cards.
+const icons = {
+  strategy: <path d="M12 3a9 9 0 1 0 9 9M12 7a5 5 0 1 0 5 5M12 11a1 1 0 1 0 1 1M13 11l7-7M17 4h3v3" />,
+  interaction: <path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V12m0-1a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-5.2-3L4 14.5a1.5 1.5 0 0 1 2.6-1.5L9 16" />,
+  systems: <path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 16.5h7M16.5 13v7" />,
+};
 
+const skills = [
+  { icon: icons.strategy, title: "UX strategy", text: "Research, flows and information architecture" },
+  { icon: icons.interaction, title: "Interaction design", text: "Clear journeys for web and mobile" },
+  { icon: icons.systems, title: "Design systems", text: "Tokens and components teams can scale" },
+];
 
 export default function About() {
   return (
     <section id="about" className="section about">
       <div className="about-text">
         <Reveal>
-          <span className="label">Who am I</span>
+          <span className="about-pill">
+            <span className="status-dot" /> About me
+          </span>
           <h2 className="about-title">
             Designing for People,
             <br />
             Building for Impact.
           </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
           <p className="about-lead">
-            I’m a Senior Product Designer in the UAE, turning complex problems into simple, elegant products
-            across web and mobile.
-          </p>
-          <p className="about-body">
-            I design user-centered experiences for the MENA region — from first research to a shipped design
-            system — so products delight the people using them and move the business forward.
+            I’m a Senior Product Designer in the UAE, turning complex problems into simple, elegant products across web
+            and mobile — <span>from first research to a shipped design system.</span>
           </p>
         </Reveal>
 
-        <Reveal delay={0.15}>
+        <Reveal delay={0.12}>
           <ul className="about-skills">
-            {skills.map((s, i) => (
+            {skills.map((s) => (
               <li key={s.title}>
-                <span className="about-skill-num">{String(i + 1).padStart(2, "0")}</span>
-                <span>
-                  <strong>{s.title}</strong>
-                  {s.text}
-                </span>
+                <svg viewBox="0 0 24 24" aria-hidden fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  {s.icon}
+                </svg>
+                <strong>{s.title}</strong>
+                <span>{s.text}</span>
               </li>
             ))}
           </ul>
