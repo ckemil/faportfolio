@@ -9,6 +9,7 @@ import "../styles/erp.css";
 import "../styles/wid.css";
 import "../styles/fpp.css";
 import "../styles/kitaab.css";
+import "../styles/duxbe.css";
 import "../styles/playground.css";
 import Loader, { loaderSkipScript } from "@/components/Loader";
 import { SITE_URL } from "@/lib/data";

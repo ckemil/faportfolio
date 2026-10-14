@@ -23,7 +23,7 @@ export type Project = {
   /** One- or two-sentence pitch shown on the home page project card. */
   summary?: string;
   /** Case study uses a bespoke Figma-built page instead of the default layout. */
-  hero?: "aptyread" | "aicompanion" | "erp" | "wid" | "fpp" | "kitaab";
+  hero?: "aptyread" | "aicompanion" | "erp" | "wid" | "fpp" | "kitaab" | "duxbe";
 };
 
 export const projects: Project[] = [
@@ -46,6 +46,16 @@ export const projects: Project[] = [
     hero: "erp",
     summary:
       "A web ERP and a mobile sales app designed as one ecosystem, so an order placed in the field reaches the warehouse and finance in seconds.",
+  },
+  {
+    slug: "duxbe",
+    industry: "Restaurant SaaS",
+    title: "Duxbe – Restaurant Management Platform",
+    cover: img("duxbe/card.webp"),
+    tags: ["Senior Product Designer", "5 months"],
+    summary:
+      "A restaurant platform that connects point of sale, inventory, recipes, purchasing and customer loyalty, so owners can move from spotting a problem to acting on it.",
+    hero: "duxbe",
   },
   {
     slug: "financial-partner-platform",

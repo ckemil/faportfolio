@@ -11,6 +11,7 @@ import ErpCase from "@/components/case/ErpCase";
 import WidCase from "@/components/case/WidCase";
 import FppCase from "@/components/case/FppCase";
 import KitaabCase from "@/components/case/KitaabCase";
+import DuxbeCase from "@/components/case/DuxbeCase";
 
 type Params = { slug: string };
 
@@ -103,6 +104,8 @@ export default async function CaseStudy({ params }: { params: Promise<Params> })
           <ErpCase />
         ) : project.hero === "wid" ? (
           <WidCase />
+        ) : project.hero === "duxbe" ? (
+          <DuxbeCase />
         ) : project.hero === "kitaab" ? (
           <KitaabCase />
         ) : project.hero === "fpp" ? (
