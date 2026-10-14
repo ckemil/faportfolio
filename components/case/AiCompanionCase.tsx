@@ -427,7 +427,7 @@ export default function AiCompanionCase() {
             />
           </div>
           <Reveal className="aic-wide">
-            <Image src={aic("wireframes.png")} alt="Low-fidelity wireframes of five app screens" width={1512} height={670} sizes="100vw" />
+            <Image src={aic("wireframes-hd.png")} alt="Low-fidelity wireframes of five app screens" width={2960} height={1704} sizes="(max-width: 1440px) 100vw, 1392px" />
           </Reveal>
         </section>
 
