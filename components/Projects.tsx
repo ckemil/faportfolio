@@ -33,12 +33,12 @@ export default function Projects() {
         </Reveal>
 
         <div className="works-list">
-          {projects.map((p, i) => {
+          {projects.map((p) => {
             const [who, year] = meta(p);
             return (
               <Reveal key={p.slug} className="works-item">
                 <span className="work-tag">
-                  <span aria-hidden>◇</span> Project {i + 1}
+                  <span aria-hidden>◇</span> {p.industry}
                 </span>
                 <Link href={`/portfolio/${p.slug}`} className="work-card">
                   <Handles />

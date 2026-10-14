@@ -11,6 +11,8 @@ export const avatar = img("YgxBe7wgNd93XD54nNj4qVCKM.jpeg");
 
 export type Project = {
   slug: string;
+  /** Industry shown on the home page card tag, e.g. "Fintech". */
+  industry: string;
   title: string;
   cover: string;
   year?: string;
@@ -27,6 +29,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "aicompanion",
+    industry: "AI Productivity",
     title: "AI Companion",
     cover: img("bqyIQe2x7s3fdCnXGgl707LDcU.png"),
     summary:
@@ -35,6 +38,7 @@ export const projects: Project[] = [
   },
   {
     slug: "enterprise-erp-sales-force-automation-platform",
+    industry: "Enterprise SaaS",
     title: "Enterprise ERP & Sales Force Automation Platform",
     cover: img("kztwhzJ6t6fNmax9g7D5uy9Qw.png"),
     year: "2025",
@@ -45,6 +49,7 @@ export const projects: Project[] = [
   },
   {
     slug: "financial-partner-platform",
+    industry: "Fintech",
     title: "Financial Partner Platform",
     cover: img("fpp/cover.png"),
     tags: ["Concept project", "Mobile"],
@@ -54,6 +59,7 @@ export const projects: Project[] = [
   },
   {
     slug: "designing-kitaab",
+    industry: "Accounting SaaS",
     title: "Kitaab – Cloud Accounting & Bookkeeping Platform",
     cover: img("liBF9nYAE5pGjzrXe3BaFe57IOE.png"),
     summary:
@@ -65,6 +71,7 @@ export const projects: Project[] = [
   },
   {
     slug: "aptyread",
+    industry: "EdTech",
     title: "AptyRead – AI Learning Platform",
     cover: img("apty/hero.png"),
     tags: ["Education", "AI Tutor", "iOS & Android"],
@@ -74,6 +81,7 @@ export const projects: Project[] = [
   },
   {
     slug: "wid",
+    industry: "Luxury E-commerce",
     title: "WID – Luxury Gifting App",
     cover: img("wid/cover.png"),
     tags: ["Luxury gifting", "Doha, Qatar"],
