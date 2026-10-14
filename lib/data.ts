@@ -23,7 +23,7 @@ export type Project = {
   /** One- or two-sentence pitch shown on the home page project card. */
   summary?: string;
   /** Case study uses a bespoke Figma-built page instead of the default layout. */
-  hero?: "aptyread" | "aicompanion" | "erp" | "wid" | "fpp";
+  hero?: "aptyread" | "aicompanion" | "erp" | "wid" | "fpp" | "kitaab";
 };
 
 export const projects: Project[] = [
@@ -68,6 +68,7 @@ export const projects: Project[] = [
     client: "Kitaab.ai",
     company: "Zartek Technologies",
     website: { label: "www.kitaab.ai", href: "https://www.kitaab.ai/" },
+    hero: "kitaab",
   },
   {
     slug: "aptyread",

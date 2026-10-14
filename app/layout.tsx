@@ -8,6 +8,7 @@ import "../styles/aicompanion.css";
 import "../styles/erp.css";
 import "../styles/wid.css";
 import "../styles/fpp.css";
+import "../styles/kitaab.css";
 import "../styles/playground.css";
 import Loader, { loaderSkipScript } from "@/components/Loader";
 import { SITE_URL } from "@/lib/data";
@@ -31,7 +32,7 @@ const caveat = Caveat({ subsets: ["latin"], weight: ["500"], variable: "--font-h
 const instrument = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--font-instrument" });
 const raleway = Raleway({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-raleway" });
 // Outfit: the Financial Partner Platform specimen and the Playground Jump game.
-const outfit = Outfit({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-outfit" });
+const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-outfit" });
 const lalezar = Lalezar({ subsets: ["arabic", "latin"], weight: "400", variable: "--font-display" });
 
 const TITLE = "Fathima Ibrahim — UI/UX Designer in UAE | Product Designer";

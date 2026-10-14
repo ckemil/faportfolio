@@ -10,6 +10,7 @@ import AiCompanionCase from "@/components/case/AiCompanionCase";
 import ErpCase from "@/components/case/ErpCase";
 import WidCase from "@/components/case/WidCase";
 import FppCase from "@/components/case/FppCase";
+import KitaabCase from "@/components/case/KitaabCase";
 
 type Params = { slug: string };
 
@@ -102,6 +103,8 @@ export default async function CaseStudy({ params }: { params: Promise<Params> })
           <ErpCase />
         ) : project.hero === "wid" ? (
           <WidCase />
+        ) : project.hero === "kitaab" ? (
+          <KitaabCase />
         ) : project.hero === "fpp" ? (
           <FppCase />
         ) : (
