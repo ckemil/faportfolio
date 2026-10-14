@@ -74,7 +74,7 @@ export const projects: Project[] = [
     slug: "aptyread",
     industry: "EdTech",
     title: "AptyRead – AI Learning Platform",
-    cover: img("apty/hero.png"),
+    cover: img("apty/card.webp"),
     tags: ["Education", "AI Tutor", "iOS & Android"],
     summary:
       "An AI reading tutor that helps children build literacy step by step, turning each lesson into a friendly, guided journey.",
