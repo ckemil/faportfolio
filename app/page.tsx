@@ -1,17 +1,21 @@
+import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Stack from "@/components/Stack";
-import Footer from "@/components/Footer";
+import Radar from "@/components/Radar";
+import HomeFooter from "@/components/HomeFooter";
 
 export default function Home() {
   return (
     <main id="top">
+      <Nav />
       <Hero />
       <Projects />
       <About />
       <Stack />
-      <Footer />
+      <Radar />
+      <HomeFooter />
     </main>
   );
 }

@@ -1,0 +1,92 @@
+/*
+ * Playground Jump — endless runner page in a Japanese woodblock (ukiyo-e) style. Scoped to .pj.
+ * Washi paper, sumi ink, vermilion lacquer and sakura pink.
+ */
+.pj-page { background: #f3ead8 var(--grain); min-height: 100svh; }
+.pj {
+  --pj-purple: #c8412f;   /* vermilion: primary actions */
+  --pj-pink: #d9412b;     /* rising-sun red accent */
+  --pj-navy: #2a2420;     /* sumi ink */
+  --pj-text: #5a4e44;
+  max-width: 1200px; margin: 0 auto; padding: 96px var(--gutter) 40px;
+  font-family: var(--font-outfit), "Outfit", sans-serif; color: var(--pj-text); letter-spacing: 0;
+}
+.pj-panel {
+  padding: 10px; border-radius: 6px; background: #fbf4e6;
+  border: 3px solid var(--pj-navy); box-shadow: 8px 8px 0 rgba(42, 36, 32, 0.85);
+}
+
+/* ---------- canvas + hud ---------- */
+.pj-game { position: relative; touch-action: manipulation; user-select: none; -webkit-user-select: none; cursor: pointer; }
+.pj-canvas { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 2px; background: #f6e6c8; font-family: var(--font-outfit), sans-serif; }
+.pj-hud { position: absolute; left: 14px; right: 14px; top: 14px; display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
+.pj-round {
+  pointer-events: auto; display: grid; place-items: center; width: 42px; height: 42px; border: 0; border-radius: 50%;
+  background: #fbf4e6; border: 2px solid var(--pj-navy); font-size: 16px;
+}
+.pj-scores {
+  display: flex; gap: 18px; padding: 6px 14px; border-radius: 3px; background: #fbf4e6; border: 2px solid var(--pj-navy);
+  font-family: var(--mono); font-size: clamp(14px, 2vw, 20px); font-weight: 500; letter-spacing: 0.06em; color: var(--pj-navy);
+}
+.pj-hi { color: #a8412f; }
+
+/* ---------- start / game over overlays (drawn over the canvas, no separate screens) ---------- */
+.pj-center {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  padding: 16px; text-align: center; pointer-events: none;
+}
+.pj-center--over { background: rgba(246, 230, 200, 0.55); }
+.pj-center .pj-replay { pointer-events: auto; }
+.pj-title { font-family: var(--font-instrument), Georgia, serif; font-size: clamp(40px, 7vw, 88px); font-weight: 400; line-height: 0.95; color: var(--pj-navy); }
+.pj-title::after { content: "遊び場ジャンプ"; display: block; margin-top: 10px; font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; font-size: 0.26em; letter-spacing: 0.4em; color: var(--pj-pink); }
+.pj-title span { color: var(--pj-pink); }
+.pj-center p { font-size: clamp(15px, 1.8vw, 20px); font-weight: 600; color: var(--pj-navy); }
+.pj-center .pj-small { font-size: clamp(12px, 1.3vw, 15px); font-weight: 500; color: var(--pj-text); }
+.pj kbd {
+  display: inline-block; padding: 2px 8px; border-radius: 3px; background: #fbf4e6; border: 1.5px solid var(--pj-navy);
+  box-shadow: 0 2px 0 var(--pj-navy); font-family: var(--mono); font-size: 0.85em; color: var(--pj-navy);
+}
+.pj-over { font-family: var(--mono); font-size: clamp(18px, 3vw, 32px) !important; font-weight: 500 !important; letter-spacing: 0.08em; color: var(--pj-navy); }
+.pj-final { display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: var(--mono); font-size: clamp(26px, 4vw, 44px) !important; }
+.pj-final em { padding: 3px 12px; border-radius: 2px; background: var(--pj-pink); color: #fff; font-family: var(--font-outfit), sans-serif; font-size: 14px; font-style: normal; font-weight: 700; }
+.pj-replay {
+  display: grid; place-items: center; width: 60px; height: 60px; margin: 6px 0; border: 3px solid var(--pj-navy); border-radius: 4px;
+  background: var(--pj-purple); color: #fbf4e6; font-size: 30px; font-weight: 700; box-shadow: 4px 4px 0 var(--pj-navy);
+}
+.pj-replay:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--pj-navy); }
+.pj-replay:focus-visible, .pj-round:focus-visible { outline: 3px solid var(--pj-pink); outline-offset: 3px; }
+
+/* ---------- design tip card (pauses the run) ---------- */
+.pj-center--tip { background: rgba(42, 36, 32, 0.35); pointer-events: auto; }
+.pj-tip {
+  position: relative; width: min(420px, 100%); padding: 26px 26px 18px; text-align: left;
+  background: #fbf4e6 var(--grain); border: 3px solid var(--pj-navy); border-radius: 4px; box-shadow: 8px 8px 0 var(--pj-navy);
+}
+.pj-tip::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: var(--pj-purple); border-bottom: 2px solid var(--pj-navy); }
+.pj-seal {
+  position: absolute; right: 18px; top: 22px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 6px;
+  background: var(--pj-pink); color: #fbf4e6; rotate: 6deg;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; font-size: 24px; font-weight: 700;
+}
+.pj-tip-kicker { font-family: var(--mono); font-size: 12px !important; font-weight: 500 !important; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pj-pink) !important; }
+.pj-tip h2 { margin-top: 6px; font-family: var(--font-instrument), Georgia, serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 400; color: var(--pj-navy); }
+.pj-tip-text { margin-top: 10px; font-size: clamp(15px, 1.6vw, 17px) !important; font-weight: 500 !important; line-height: 1.5; color: var(--pj-text) !important; }
+.pj-got {
+  margin-top: 18px; padding: 11px 18px; border: 3px solid var(--pj-navy); border-radius: 4px;
+  background: var(--pj-purple); color: #fbf4e6; font: 600 15px/1 var(--font-outfit), sans-serif; box-shadow: 4px 4px 0 var(--pj-navy);
+}
+.pj-got:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--pj-navy); }
+.pj-got:focus-visible { outline: 3px solid var(--pj-pink); outline-offset: 3px; }
+.pj-tip .pj-small { margin-top: 8px; }
+
+.pj-foot { margin-top: 18px; text-align: center; font-size: 14px; }
+
+@media (max-width: 640px) {
+  .pj { padding-top: 84px; }
+  .pj-panel { padding: 5px; box-shadow: 5px 5px 0 rgba(42, 36, 32, 0.85); }
+  .pj-tip { padding: 20px 18px 14px; }
+  .pj-seal { width: 36px; height: 36px; font-size: 19px; }
+  .pj-round { width: 34px; height: 34px; font-size: 14px; }
+  .pj-scores { gap: 10px; padding: 5px 10px; }
+  .pj-replay { width: 48px; height: 48px; font-size: 24px; }
+}

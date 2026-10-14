@@ -6,6 +6,10 @@ import { caseStudies, projects, type Block } from "@/lib/data";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import AptyReadCase from "@/components/case/AptyReadCase";
+import AiCompanionCase from "@/components/case/AiCompanionCase";
+import ErpCase from "@/components/case/ErpCase";
+import WidCase from "@/components/case/WidCase";
+import FppCase from "@/components/case/FppCase";
 
 type Params = { slug: string };
 
@@ -18,7 +22,19 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
-  return project ? { title: `${project.title} | Fathima P`, openGraph: { images: [project.cover] } } : {};
+  if (!project) return {};
+  const title = `${project.title} — UI/UX Case Study`;
+  const description = project.summary
+    ? `${project.summary} A UI/UX design case study by Fathima Ibrahim, UI/UX Designer in the UAE.`
+    : `UI/UX design case study by Fathima Ibrahim, UI/UX Designer in the UAE.`;
+  const url = `/portfolio/${project.slug}`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { type: "article", url, title, description, images: [{ url: project.cover, alt: project.title }] },
+    twitter: { card: "summary_large_image", title, description, images: [project.cover] },
+  };
 }
 
 function renderBlock(block: Block, i: number) {
@@ -70,17 +86,27 @@ export default async function CaseStudy({ params }: { params: Promise<Params> })
 
   const nav = (
     <nav className="cs-nav">
-      <Link href="/#projects" className="back-link">
-        ← Back
+      <Link href="/#projects" className="btn btn-dark">
+        <span aria-hidden>←</span> Back
       </Link>
     </nav>
   );
 
-  if (project.hero === "aptyread") {
+  if (project.hero) {
     return (
       <main id="top" className="cs">
         {nav}
-        <AptyReadCase />
+        {project.hero === "aptyread" ? (
+          <AptyReadCase />
+        ) : project.hero === "erp" ? (
+          <ErpCase />
+        ) : project.hero === "wid" ? (
+          <WidCase />
+        ) : project.hero === "fpp" ? (
+          <FppCase />
+        ) : (
+          <AiCompanionCase />
+        )}
         <Footer cta />
       </main>
     );

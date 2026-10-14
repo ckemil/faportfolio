@@ -1,33 +1,69 @@
 import Image from "next/image";
 import Link from "next/link";
-import { projects } from "@/lib/data";
+import { projects, type Project } from "@/lib/data";
 import Reveal from "./Reveal";
 
-// First card spans the full row; the last one does too if it would otherwise sit alone.
-const isWide = (i: number, total: number) => i === 0 || (i === total - 1 && (total - 1) % 2 === 1);
+/** Design-tool style corner handles around a "selected" frame. */
+function Handles() {
+  return (
+    <>
+      <span className="handle tl" aria-hidden />
+      <span className="handle tr" aria-hidden />
+      <span className="handle bl" aria-hidden />
+      <span className="handle br" aria-hidden />
+    </>
+  );
+}
+
+function meta(p: Project) {
+  const who = p.client ?? p.company ?? p.tags?.slice(0, 2).join(" · ");
+  return [who, p.year].filter(Boolean) as string[];
+}
 
 export default function Projects() {
   return (
-    <section id="projects" className="section">
-      <Reveal>
-        <h2 className="section-title">Featured Projects</h2>
-      </Reveal>
-      <div className="projects-grid">
-        {projects.map((p, i) => (
-          <Reveal key={p.slug} delay={i * 0.08} className={isWide(i, projects.length) ? "project-wide" : undefined}>
-            <Link href={`/portfolio/${p.slug}`} className="project-card">
-              <div className="project-media">
-                <Image src={p.cover} alt={p.title} fill sizes="(max-width: 809px) 100vw, 60vw" />
-              </div>
-              <div className="project-meta">
-                <h3>{p.title}</h3>
-                <span className="project-arrow" aria-hidden>
-                  ↗
+    <section id="projects" className="works">
+      <div className="works-inner">
+        <Reveal className="works-head">
+          <span className="works-eyebrow">
+            Featured projects<span className="caret">_</span>
+            <Handles />
+          </span>
+          <h2 className="works-title">Work I am proud of</h2>
+        </Reveal>
+
+        <div className="works-list">
+          {projects.map((p, i) => {
+            const [who, year] = meta(p);
+            return (
+              <Reveal key={p.slug} className="works-item">
+                <span className="work-tag">
+                  <span aria-hidden>◇</span> Project {i + 1}
                 </span>
-              </div>
-            </Link>
-          </Reveal>
-        ))}
+                <Link href={`/portfolio/${p.slug}`} className="work-card">
+                  <Handles />
+                  <div className="work-text">
+                    {who && (
+                      <span className="work-meta">
+                        <span className="work-client">{who}</span>
+                        {year && <span className="work-dot" aria-hidden />}
+                        {year && <span>{year}</span>}
+                      </span>
+                    )}
+                    <h3>{p.title}</h3>
+                    {p.summary && <p>{p.summary}</p>}
+                    <span className="work-cta">
+                      View case study <span aria-hidden>→</span>
+                    </span>
+                  </div>
+                  <div className="work-media">
+                    <Image src={p.cover} alt={`${p.title} — UI/UX case study cover`} fill sizes="(max-width: 809px) 100vw, 600px" />
+                  </div>
+                </Link>
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

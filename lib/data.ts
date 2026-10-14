@@ -1,18 +1,13 @@
+/** Canonical production URL, used for SEO metadata, sitemap and structured data. */
+export const SITE_URL = "https://uixfathima.com";
 export const LINKEDIN = "https://www.linkedin.com/in/fathima98/";
+export const EMAIL = "fathimap02@gmail.com";
 export const RESUME =
   "https://drive.google.com/file/d/11KQFbQY1GVlmrrt5NBVqs6eLLGtZeH4a/view?usp=sharing";
 
 const img = (name: string) => `/images/${name}`;
 
 export const avatar = img("YgxBe7wgNd93XD54nNj4qVCKM.jpeg");
-
-/** Floating icons around the hero headline. */
-export const heroIcons = [
-  { src: img("2HMfPlrEPEf3gVNa3So7SSXsM.jpg"), alt: "Creative Cloud" },
-  { src: img("KNDBQgO9SSkq40okizEwxHnaWX0.png"), alt: "Figma" },
-  { src: img("slVBMmaAk8fSLZNzpk3balStRo.png"), alt: "Framer" },
-  { src: avatar, alt: "Fathima" },
-];
 
 export type Project = {
   slug: string;
@@ -23,22 +18,20 @@ export type Project = {
   company?: string;
   website?: { label: string; href: string };
   tags?: string[];
-  /** Case study uses the AptyRead (Figma) design instead of the default layout. */
-  hero?: "aptyread";
+  /** One- or two-sentence pitch shown on the home page project card. */
+  summary?: string;
+  /** Case study uses a bespoke Figma-built page instead of the default layout. */
+  hero?: "aptyread" | "aicompanion" | "erp" | "wid" | "fpp";
 };
 
 export const projects: Project[] = [
   {
-    slug: "aptyread",
-    title: "AptyRead – AI Reading Tutor for Kids",
-    cover: img("apty/hero.png"),
-    tags: ["Education", "AI Tutor", "iOS & Android"],
-    hero: "aptyread",
-  },
-  {
     slug: "aicompanion",
     title: "AI Companion",
     cover: img("bqyIQe2x7s3fdCnXGgl707LDcU.png"),
+    summary:
+      "A personal AI companion app that records meetings and conversations, then turns them into reflections and goals you can act on.",
+    hero: "aicompanion",
   },
   {
     slug: "enterprise-erp-sales-force-automation-platform",
@@ -46,15 +39,47 @@ export const projects: Project[] = [
     cover: img("kztwhzJ6t6fNmax9g7D5uy9Qw.png"),
     year: "2025",
     client: "Seoul Oasis",
+    hero: "erp",
+    summary:
+      "A web ERP and a mobile sales app designed as one ecosystem, so an order placed in the field reaches the warehouse and finance in seconds.",
+  },
+  {
+    slug: "financial-partner-platform",
+    title: "Financial Partner Platform",
+    cover: img("fpp/cover.png"),
+    tags: ["Concept project", "Mobile"],
+    summary:
+      "A mobile concept for financial advisors and distribution partners to manage clients, portfolios, onboarding and business growth in one daily workspace.",
+    hero: "fpp",
   },
   {
     slug: "designing-kitaab",
     title: "Kitaab – Cloud Accounting & Bookkeeping Platform",
     cover: img("liBF9nYAE5pGjzrXe3BaFe57IOE.png"),
+    summary:
+      "A cloud accounting platform that brings bookkeeping, taxation, and on-demand CFO services together for growing businesses.",
     year: "2022",
     client: "Kitaab.ai",
     company: "Zartek Technologies",
     website: { label: "www.kitaab.ai", href: "https://www.kitaab.ai/" },
+  },
+  {
+    slug: "aptyread",
+    title: "AptyRead – AI Learning Platform",
+    cover: img("apty/hero.png"),
+    tags: ["Education", "AI Tutor", "iOS & Android"],
+    summary:
+      "An AI reading tutor that helps children build literacy step by step, turning each lesson into a friendly, guided journey.",
+    hero: "aptyread",
+  },
+  {
+    slug: "wid",
+    title: "WID – Luxury Gifting App",
+    cover: img("wid/cover.png"),
+    tags: ["Luxury gifting", "Doha, Qatar"],
+    summary:
+      "A luxury gifting app based in Qatar: a customer app, a driver app and a super admin panel, designed so every order arrives feeling as personal as the moment it was sent for.",
+    hero: "wid",
   },
 ];
 
@@ -65,10 +90,24 @@ export const aboutPhotos = [
   img("5QpAhOzJ4NzmeNztriRfw4HCrHs.jpg"),
 ];
 
-export const nowPhotos = [
-  img("ZKJTz8Re9xhQ4TIbGqIKq1McUk.jpeg"),
-  img("Gj2Z8JW6pfXBlGna0BYg6Ki0UA.jpeg"),
-  img("LPnrXn7fgt8tYXN6elqVcunM.jpeg"),
+export const nowPhoto = img("now-polaroid.jpg");
+
+/* ------------------------------------------------------------------ */
+/* Design Radar — trends, tools and reads currently on my radar        */
+/* ------------------------------------------------------------------ */
+
+export type RadarKind = "Trend" | "Tool" | "Read" | "Inspiration";
+export type RadarItem = { kind: RadarKind; title: string; note: string; href: string; source: string };
+
+export const radar: RadarItem[] = [
+  { kind: "Trend", title: "AI-native interfaces", note: "Moving from chat boxes to AI woven into the flow — suggestions, summaries and actions where the work already happens.", href: "https://www.nngroup.com/articles/", source: "nngroup.com" },
+  { kind: "Trend", title: "Expressive design systems", note: "Systems with more personality — bolder shape, motion and colour — without losing consistency.", href: "https://m3.material.io/", source: "m3.material.io" },
+  { kind: "Tool", title: "Figma", note: "Where every project starts and ends: components, variables and prototypes, now with AI in the loop.", href: "https://www.figma.com/", source: "figma.com" },
+  { kind: "Tool", title: "Rive", note: "Interactive, state-driven motion that ships to production instead of staying in a prototype.", href: "https://rive.app/", source: "rive.app" },
+  { kind: "Read", title: "Apple Human Interface Guidelines", note: "My go-to reference for platform conventions before breaking any of them on mobile.", href: "https://developer.apple.com/design/human-interface-guidelines/", source: "developer.apple.com" },
+  { kind: "Read", title: "Laws of UX", note: "A quick, visual refresher on the psychology behind good interface decisions.", href: "https://lawsofux.com/", source: "lawsofux.com" },
+  { kind: "Inspiration", title: "Mobbin", note: "Real-world mobile and web flows to benchmark patterns before designing new ones.", href: "https://mobbin.com/", source: "mobbin.com" },
+  { kind: "Inspiration", title: "Godly", note: "A steady stream of bold, well-crafted web design to keep the visual eye sharp.", href: "https://godly.website/", source: "godly.website" },
 ];
 
 export type Tool = { name: string; desc: string; href: string; icon: string };
@@ -104,100 +143,8 @@ export type Block =
   | { type: "image"; src: string; alt: string };
 
 export const caseStudies: Record<string, Block[]> = {
-  aicompanion: [
-    { type: "image", src: img("pRGcMvYhnVeige0wst2v4sAXAc.png"), alt: "AI Companion" },
-  ],
-
   "designing-kitaab": [
     { type: "image", src: img("WlBr30RDmtYNHuJq1Gf3mCoWwBs.png"), alt: "Kitaab case study" },
   ],
 
-  "enterprise-erp-sales-force-automation-platform": [
-    { type: "h2", text: "Overview" },
-    {
-      type: "p",
-      text: "This project connected two products into one business: a web-based ERP that runs internal operations, and a mobile Sales Force Automation (SFA) app that puts the same operational intelligence into the hands of field sales reps. Instead of designing them as separate tools, I approached them as one ecosystem — a rep's order placed at a customer's door should be visible to a warehouse manager and a finance controller within seconds, not by end of day.",
-    },
-    {
-      type: "p",
-      text: "My role spanned the full process: stakeholder research, information architecture, user flows, wireframes, high-fidelity UI, a shared design system across web and mobile, prototyping, and developer handoff.",
-    },
-    { type: "h2", text: "Core problem" },
-    {
-      type: "p",
-      text: "The organization was running on multiple disconnected third-party systems layered on top of manual processes — separate tools for sales, inventory, accounting, and customer management that didn't talk to each other. Field sales reps recorded orders by hand, then re-entered them later, which meant delays, duplicate data entry, inventory mismatches, and management flying blind on what was actually happening outside the office.",
-    },
-    {
-      type: "callout",
-      label: "Goal:",
-      text: "Replace the patchwork with one connected ecosystem — a web ERP for internal operations and a mobile SFA app for the field — sharing the same real-time data, so every department is working off the same picture.",
-    },
-    { type: "h3", text: "Research Highlights" },
-    {
-      type: "p",
-      text: "I had detailed meetings with stakeholders across the business — from sales and warehouse to finance and management — to understand how each team's existing workflow actually worked. A few findings came up repeatedly and shaped most of the decisions that followed:",
-    },
-    {
-      type: "points",
-      items: [
-        { title: "Speed in the field is non-negotiable.", text: "Reps needed to place an order in minutes, standing in front of a customer — not after driving back to the office." },
-        { title: "Visibility beats reporting.", text: "Managers didn't want another report; they wanted to see field activity as it happened." },
-        { title: "Reconciliation was eating finance's week.", text: "Manual matching of records across systems was the single biggest time sink for finance." },
-        { title: "Stock data had to be trustworthy.", text: "Warehouse teams needed one accurate number, not three conflicting ones." },
-        { title: "Executives wanted answers, not spreadsheets.", text: "A dashboard that surfaced insight, not just data." },
-      ],
-    },
-    { type: "h3", text: "Design Process" },
-    {
-      type: "callout",
-      label: "",
-      text: "Discover → Research → Information Architecture → User Flows → Low-Fidelity Wireframes → High-Fidelity UI → Interactive Prototypes → Usability Testing → Iterate → Developer Handoff",
-    },
-    {
-      type: "p",
-      text: "A single, shared design system carried color, typography, grid, and components across both the web and mobile products — buttons, cards, tables, forms, modals, status indicators, and charts — so the experience felt like one product family, not two separately built apps, while also speeding up development.",
-    },
-    { type: "image", src: img("EmFVWl1XOUIpOmZBShccs9Je7gY.png"), alt: "Shared design system" },
-    { type: "h2", text: "The Solution - Two Products, One Ecosystem" },
-    { type: "image", src: img("xGCZQ7ajlAxUsbDQn7bCbJ1y8d0.png"), alt: "ERP and SFA screens" },
-    {
-      type: "points",
-      items: [
-        {
-          title: "ERP (Web)",
-          text: "— Dashboard with AI-powered analytics, CRM, Sales, Purchase, Inventory/Warehouse, Accounting, HRMS, Payroll, Assets, Approvals, Reports, Admin. The dashboard surfaces AI-driven insights — trends, anomalies, and forecasts — so executives get a head start on decisions instead of a pile of spreadsheets to interpret themselves.",
-        },
-        {
-          title: "SFA (Mobile)",
-          text: "— Visit planning, GPS check-in, route optimization, order taking, live stock visibility, collections, customer history, promotions, and offline mode with automatic sync. Access is role-based across Warehouse Gatekeeper, Manager, and Sales Person — each sees a tailored view built around their day, not a one-size-fits-all app.",
-        },
-      ],
-    },
-    {
-      type: "callout",
-      label: "The core loop:",
-      text: "A rep checks in at a customer site → places an order on the spot → it syncs to the ERP → a manager sees it live, and the warehouse sees updated stock. What used to be a next-day report becomes a real-time event.",
-    },
-    { type: "h2", text: "Key UX Decisions" },
-    { type: "image", src: img("1twxqXaFnUtoI1ev5hocexwaFU.png"), alt: "Key UX decisions" },
-    { type: "h2", text: "Business Impact" },
-    {
-      type: "list",
-      items: [
-        "Executives moved from raw reports to AI-generated insights and forecasts",
-        "Faster order processing and less manual data entry",
-        "More accurate, trustworthy inventory data across warehouse and sales",
-        "Real-time visibility into field sales activity for managers",
-        "Faster approval cycles with clear status tracking",
-        "Significantly reduced manual reconciliation time for finance",
-        "One consistent experience across desktop and mobile — no relearning between platforms",
-      ],
-    },
-    { type: "h2", text: "Key Takeaway" },
-    {
-      type: "p",
-      text: "Enterprise complexity and usability aren't in conflict when research stays continuous and the design system is shared. Connecting ERP and SFA into a single ecosystem — instead of treating them as separate products — turned scattered, delayed, third-party-fragmented data into one real-time, organization-wide view. That's the difference between a tool people tolerate and a system they actually run their business on.",
-    },
-    { type: "image", src: img("WOZPKWx8kur4QnHS2bis2czPAZY.png"), alt: "Final screens" },
-  ],
 };
