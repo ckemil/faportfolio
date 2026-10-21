@@ -48,16 +48,6 @@ export const projects: Project[] = [
       "A web ERP and a mobile sales app designed as one ecosystem, so an order placed in the field reaches the warehouse and finance in seconds.",
   },
   {
-    slug: "duxbe",
-    industry: "Restaurant SaaS",
-    title: "Duxbe – Restaurant Management Platform",
-    cover: img("duxbe/card.webp"),
-    tags: ["Senior Product Designer", "5 months"],
-    summary:
-      "A restaurant platform that connects point of sale, inventory, recipes, purchasing and customer loyalty, so owners can move from spotting a problem to acting on it.",
-    hero: "duxbe",
-  },
-  {
     slug: "financial-partner-platform",
     industry: "Fintech",
     title: "Financial Partner Platform",
@@ -79,6 +69,16 @@ export const projects: Project[] = [
     company: "Zartek Technologies",
     website: { label: "www.kitaab.ai", href: "https://www.kitaab.ai/" },
     hero: "kitaab",
+  },
+  {
+    slug: "duxbe",
+    industry: "Restaurant SaaS",
+    title: "Duxbe – Restaurant Management Platform",
+    cover: img("duxbe/card.webp"),
+    tags: ["Senior Product Designer", "5 months"],
+    summary:
+      "A restaurant platform that connects point of sale, inventory, recipes, purchasing and customer loyalty, so owners can move from spotting a problem to acting on it.",
+    hero: "duxbe",
   },
   {
     slug: "aptyread",
