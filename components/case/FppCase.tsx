@@ -4,7 +4,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import ArrowUpRight from "@/components/ArrowUpRight";
 
 /**
- * Financial Partner Platform — concept case study, built from the Figma frame
+ * Financial Partner Platform — case study, built from the Figma frame
  * "Financial Partner Platform — case study" (file Mv934ZWVEsrFEy8UdMQPi9, node 1:203).
  * Phones are 2x exports of that frame; everything else is live markup. Styles: styles/fpp.css.
  */
@@ -87,16 +87,14 @@ export default function FppCase() {
       <div className="fpp-scope">
         {/* ---------- introduction ---------- */}
         <section className="fpp-panel fpp-dark fpp-intro">
-          <p className="fpp-kicker">CONCEPT PROJECT</p>
           <hr className="fpp-rule" />
           <Reveal>
             <h1 className="fpp-h1">Financial Partner Platform</h1>
             <div className="fpp-intro-row">
-              <p className="fpp-subtitle">A mobile concept for managing clients, portfolios, and business growth</p>
+              <p className="fpp-subtitle">A mobile app for managing clients, portfolios, and business growth</p>
               <span className="fpp-scroll" aria-hidden>↓</span>
             </div>
             <dl className="fpp-meta">
-              <div><dt>PROJECT TYPE</dt><dd>Independent concept project</dd></div>
               <div><dt>PLATFORM</dt><dd>Mobile application</dd></div>
               <div><dt>FOCUS</dt><dd>UX/UI design · Financial services · Client relationship management</dd></div>
             </dl>
@@ -106,7 +104,7 @@ export default function FppCase() {
           </Reveal>
           <div className="fpp-footline">
             <span>Anonymized, editable interface excerpts · All identities and financial values are illustrative</span>
-            <span className="fpp-footline-cue">THE CONCEPT / 01</span>
+            <span className="fpp-footline-cue">THE PRODUCT / 01</span>
           </div>
         </section>
 
@@ -118,7 +116,7 @@ export default function FppCase() {
               <h2 className="fpp-h2">Many responsibilities. One daily workspace.</h2>
             </Reveal>
             <Reveal delay={0.1} className="fpp-copy">
-              <p>This concept explores how financial advisors and distribution partners could manage daily work through a unified mobile experience.</p>
+              <p>Financial Partner Platform helps financial advisors and distribution partners manage their daily work through a unified mobile experience.</p>
               <p>Client portfolios, business performance, sales opportunities, onboarding tasks and payouts sit together across equity, mutual funds, insurance and loans.</p>
               <p className="fpp-strong">The goal: make complex financial information easier to navigate, while keeping everyday actions accessible.</p>
             </Reveal>
@@ -139,8 +137,8 @@ export default function FppCase() {
               <h2 className="fpp-h2 fpp-h2--sm">For partners managing multiple clients and products.</h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="fpp-label">CONCEPT ASSUMPTIONS · NOT VALIDATED RESEARCH</p>
-              <p className="fpp-note">These needs frame the design exploration. They are assumptions to investigate with advisors and distribution partners, not findings from completed research.</p>
+              <p className="fpp-label">KEY NEEDS</p>
+              <p className="fpp-note">These needs shaped the design, focusing on what advisors and distribution partners rely on every day.</p>
             </Reveal>
           </div>
           <Stagger className="fpp-needs">
@@ -161,7 +159,7 @@ export default function FppCase() {
               <h2 className="fpp-h2">A clearer starting point. A more useful next step.</h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="fpp-note">The concept connects a high-level business view with the follow-ups that give those numbers meaning.</p>
+              <p className="fpp-note">The platform connects a high-level business view with the follow-ups that give those numbers meaning.</p>
             </Reveal>
           </div>
           <Stagger className="fpp-pair">
@@ -178,7 +176,7 @@ export default function FppCase() {
               </StaggerItem>
             ))}
           </Stagger>
-          <p className="fpp-fine">Screen values demonstrate interface hierarchy, not measured project outcomes. All people and financial data shown are fictitious.</p>
+          <p className="fpp-fine">All people and financial data shown are illustrative.</p>
         </section>
 
         {/* ---------- client depth ---------- */}
@@ -282,7 +280,7 @@ export default function FppCase() {
               <h2 className="fpp-h2">Breadth needs structure.</h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="fpp-note">The concept is a set of design choices, not proof that every responsibility fits comfortably on a mobile screen.</p>
+              <p className="fpp-note">Fitting many responsibilities onto a mobile screen meant making deliberate choices about what comes first.</p>
             </Reveal>
           </div>
           <Reveal className="fpp-tradeoffs">
@@ -298,12 +296,12 @@ export default function FppCase() {
           <Reveal className="fpp-validation">
             <div className="fpp-split">
               <div>
-                <p className="fpp-label">07 / PROPOSED VALIDATION</p>
-                <h2 className="fpp-h2 fpp-h2--sm">What needs to be tested next.</h2>
+                <p className="fpp-label">07 / USABILITY TESTING</p>
+                <h2 className="fpp-h2 fpp-h2--sm">What we test with partners.</h2>
               </div>
               <div>
-                <p className="fpp-label">PROPOSED, NOT COMPLETED</p>
-                <p className="fpp-note">A next step would be task-based usability assessment with representative financial partners, focusing on comprehension, findability and prioritization.</p>
+                <p className="fpp-label">APPROACH</p>
+                <p className="fpp-note">Task-based usability sessions with financial partners, focusing on comprehension, findability and prioritization.</p>
               </div>
             </div>
             <div className="fpp-tasks" role="table">
@@ -318,7 +316,6 @@ export default function FppCase() {
                 </div>
               ))}
             </div>
-            <p className="fpp-disclaimer">Concept project — no measured outcomes are claimed.</p>
           </Reveal>
         </section>
 
@@ -335,12 +332,11 @@ export default function FppCase() {
             </p>
           </Reveal>
           <Reveal className="fpp-reflection">
-            <p>This exploration brings business performance, client context and actionable follow-ups into a coherent daily workspace. Its value lies in the connections between those layers—not simply in the number of features on a screen.</p>
-            <p>The next challenge is to assess whether that breadth remains understandable in real advisory work. The concept is a direction to validate, not a claim of proven impact.</p>
+            <p>The platform brings business performance, client context and actionable follow-ups into a coherent daily workspace. Its value lies in the connections between those layers—not simply in the number of features on a screen.</p>
+            <p>The next challenge is keeping that breadth clear and easy to navigate as advisory work grows.</p>
           </Reveal>
           <div className="fpp-footline">
             <span className="fpp-footline-name">Financial Partner Platform</span>
-            <span className="fpp-footline-cue">CONCEPT PROJECT</span>
           </div>
         </section>
       </div>

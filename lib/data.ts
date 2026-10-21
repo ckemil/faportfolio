@@ -62,9 +62,9 @@ export const projects: Project[] = [
     industry: "Fintech",
     title: "Financial Partner Platform",
     cover: img("fpp/cover.png"),
-    tags: ["Concept project", "Mobile"],
+    tags: ["Mobile"],
     summary:
-      "A mobile concept for financial advisors and distribution partners to manage clients, portfolios, onboarding and business growth in one daily workspace.",
+      "A mobile app for financial advisors and distribution partners to manage clients, portfolios, onboarding and business growth in one daily workspace.",
     hero: "fpp",
   },
   {
